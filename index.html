@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //Insertion Sort
+        var b = [34, 203, 3, 746, 200, 984, 198, 764, 9];
+        function insertionSort(values) {
+            for (var i = 1; i < values.length; ++i) {
+                var temp = values[i];
+                var j = i - 1;
+                for (; j >= 0 && values[j] > temp; --j) {
+                    values[j + 1] = values[j];
+                }
+                values[j + 1] = temp;
+            }
+        };
+        insertionSort(b);
+        console.log("Insertion Sort");
+        console.log(b);
+
+        //Bubble Sort
+        var a = [34, 203, 3, 746, 200, 984, 198, 764, 9];
+        function bubbleSort(a) {
+            var swapped;
+            do { //This does the check at the end of the loop to determine if we exit.
+                swapped = false; //We are entering a round of swapping. Set it to false.
+
+                //Iterate through all the numbers swapping the elements as necessary. If no swaps take place then we are good and can exit the do loop.
+                for (var i = 0; i < a.length - 1; i++) {
+                    if (a[i] > a[i + 1]) {
+                        var temp = a[i];
+                        a[i] = a[i + 1];
+                        a[i + 1] = temp;
+                        //A swap took place so set it to true. This will cause it to do another do loop.
+                        swapped = true;
+                    }
+                }
+            } while (swapped); //If swap is true continue with the do loop.
+        }
+        bubbleSort(a);
+        console.log("Bubble Sort")
+        console.log(a);
+
+        //Quick Sort
+        var c = [34, 203, 3, 746, 200, 984, 198, 764, 9];
+        var quickSort = function (arr) {
+            var left = [];//Numbers lower than the pivot
+            var right = [];//Numbers higher than the pivot
+
+            if (arr.length <= 1) return arr;
+
+            var pivot = arr[0];//Pivot is the first element in the array and the number to compare against.
+            arr.shift();//Removes the first element of an array. (Pop removes the last element)
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] <= pivot ? left.push(arr[i]) : right.push(arr[i]);
+            }
+            //return $.merge($.merge(quickSort(left), $.makeArray(pivot)), quickSort(right));
+            return quickSort(left).concat(pivot, quickSort(right));
+        };
+
+        var result = quickSort(c);
+        console.log("Quick Sort")
+        console.log(result);
+
+
+
+    </script>
+</body>
+</html>
